@@ -24,7 +24,7 @@ import unicodedata
 import torch
 import pandas as pd
 from tqdm import tqdm
-import fitz  # PyMuPDF
+import fitz  # PyMuPDF 꼭 설치해야함
 
 from transformers import (
     AutoTokenizer,
@@ -34,7 +34,7 @@ from transformers import (
 )
 from accelerate import Accelerator
 
-# Langchain 관련
+
 from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
@@ -46,19 +46,16 @@ from langchain.schema.output_parser import StrOutputParser
 
 def process_pdf(file_path, chunk_size=800, chunk_overlap=50):
     """PDF 텍스트 추출 후 chunk 단위로 나누기"""
-    # PDF 파일 열기
+
     doc = fitz.open(file_path)
     text = ''
-    # 모든 페이지의 텍스트 추출
     for page in doc:
         text += page.get_text()
-    # 텍스트를 chunk로 분할
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap
     )
     chunk_temp = splitter.split_text(text)
-    # Document 객체 리스트 생성
     chunks = [Document(page_content=t) for t in chunk_temp]
     return chunks
 
@@ -88,7 +85,6 @@ def process_pdfs_from_dataframe(df, base_directory):
     unique_paths = df['Source_path'].unique()
 
     for path in tqdm(unique_paths, desc="Processing PDFs"):
-        # 경로 정규화 및 절대 경로 생성
         normalized_path = normalize_path(path)
         full_path = os.path.normpath(os.path.join(base_directory, normalized_path.lstrip('./'))) if not os.path.isabs(normalized_path) else normalized_path
 
@@ -99,18 +95,16 @@ def process_pdfs_from_dataframe(df, base_directory):
         chunks = process_pdf(full_path)
         db = create_vector_db(chunks)
 
-        # Retriever 생성
         retriever = db.as_retriever(search_type="mmr",
                                     search_kwargs={'k': 3, 'fetch_k': 8})
 
-        # 결과 저장
         pdf_databases[pdf_title] = {
                 'db': db,
                 'retriever': retriever
         }
     return pdf_databases
 
-base_directory = '/content/drive/MyDrive/Dacon/'
-df = pd.read_csv(base_directory + 'test.csv')
-pdf_databases = process_pdfs_from_dataframe(df, base_directory)
+
+df = pd.read_csv('')
+pdf_databases = process_pdfs_from_dataframe(df, directory)
 
