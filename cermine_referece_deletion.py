@@ -165,49 +165,7 @@ def cermine_dois(pdf_file, force_api=False, override_local=None):
     # Call the plaintext methods to fetch DOIs
     return plaintext.get_cited_dois(plaintext_references)
 
-'''import fitz
-import re
-from fpdf import FPDF
 
-class PDF(FPDF):
-    def __init__(self):
-        super().__init__()
-        self.add_page()
-        self.set_font("Arial", size = 12)
-
-    def add_text(self, text):
-        self.multi_cell(0, 10, text)
-
-def string_to_pdf(input_text, pdf_filename):
-
-    pdf = PDF()
-
-    pdf.add_text(input_text)
-
-    pdf.output(pdf_filename)
-
-def extract_text_from_pdf(pdf_path):
-    doc = fitz.open(pdf_path)
-    text = ""
-    for page in doc:
-        text += page.get_text()
-    return text
-
-original_file = '/content/drive/MyDrive/2407.19153v1.pdf' #모아둔 원본 파일 경로
-  # 이건 위에서 reference 제거하기 전 수행해야 함
-text = extract_text_from_pdf('/content/drive/MyDrive/2407.19153v1.pdf') # preprocessed 하위폴더에다가 저장
-
-
-reference_section = re.compile(r'References\n')
-reference_start_index = re.search(reference_section, text).span()
-
-text_without_reference = text[:reference_start_index[0]]
-text_without_reference = text_without_reference
-
-input_string = text_without_reference
-string_to_pdf(input_string, f'{original_file}.pdf')
-
-''' # reference part deletion 작업, 일단 보류
 
 # setup인데 잘 안돼서 위에서 직접 다운받음
 '''#!/usr/bin/env python
