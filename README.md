@@ -1,2 +1,2 @@
-# Saryunan
-this project is for malware research retreival, input is malware that can subject papers most related to input.
+# 
+https://github.com/CeON/CERMINE?tab=AGPL-3.0-1-ov-file and https://github.com/Phyks/libbmc are used
