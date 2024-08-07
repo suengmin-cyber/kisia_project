@@ -9,20 +9,20 @@ Original file is located at
 '''
 plaintext
 코드 복사
-This file is part of [프로그램 이름].
+This file is part of [libmmc].
 
-[프로그램 이름] is free software: you can redistribute it and/or modify
+[libmmc] is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-[프로그램 이름] is distributed in the hope that it will be useful,
+[libmmc] is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
-along with [프로그램 이름].  If not, see <http://www.gnu.org/licenses/>.'''
+along with [libmmc].  If not, see <http://www.gnu.org/licenses/>.'''
 
 !pip install arxiv2bib>=1.0.7
 !pip install bibtexparser>=0.6.2
