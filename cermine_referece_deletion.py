@@ -31,7 +31,7 @@ along with [libmmc].  If not, see <http://www.gnu.org/licenses/>.'''
 !pip install PySocks>=1.5.6
 !pip install PyPDF2>=1.25.1
 
-!git clone https://github.com/kermitt2/libbmc.git
+!git clone https://github.com/Phyks/libbmc
 
 !pip install fitz
 
